@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="UTF-8">
+<link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+<title>DeltaHackerZ - Hack Forum - Hacker Forum - Nulled Theme - Warez Script , Warez Script</title>
+<link rel="canonical" href="https://deltahackerz.com/forum/index.php" />
+<link rel="alternate" type="application/rss+xml" title="RSS feed for DeltaHackerZ - Hack Forum - Hacker Forum - Nulled Theme - Warez Script" href="https://deltahackerz.com/forum/index.php" />	
+<meta name="description" content="DeltaHackerz , Hack Forum , Hacker Forum , Delta Hackerz , Yazılım Forum , Siber Güvenlik , Warez Script" />
+<meta property="og:description" content="DeltaHackerz , Hack Forum , Hacker Forum , Delta Hackerz , Yazılım Forum , Siber Güvenlik , Warez Script" />
+<meta property="twitter:description" content="DeltaHackerz , Hack Forum , Hacker Forum , Delta Hackerz , Yazılım Forum , Siber Güvenlik , Warez Script" />
+<meta property="og:url" content="https://deltahackerz.com/forum/index.php" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<style>
+@import url("https://fonts.googleapis.com/css?family=Major+Mono+Display&display=swap");
+html,
+body {
+  height: 100%;
+}
+body {
+  background: #111;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  user-select: none;
+  position: absolute;
+  z-index: 20;
+  font-family: "Major Mono Display", monospace;
+  color: white;
+  top: 16px;
+  right: 16px;
+  font-size: 28px;
+  text-align: right;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  word-spacing: -5px;
+  letter-spacing: -1px;
+  padding-bottom: 15px;
+  text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.5);
+}
+.title small {
+  font-size: 14px;
+  position: absolute;
+  top: 120%;
+  right: 0;
+}
+.title::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  opacity: 0.25;
+  right: 0px;
+  height: 3px;
+  width: 87px;
+  background: white;
+}
+
+#player {
+  width: 400px;
+  max-width: 80vw;
+  max-height: 80vh;
+  position: relative;
+}
+
+#play {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  border-radius: 100%;
+  background: white;
+  box-shadow: 0px 0px 20px 3px rgba(0, 0, 0, 0.75);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 300ms;
+}
+#play::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 0 10px 17.3px;
+  border-color: transparent transparent transparent #111;
+  transform: translateX(2px);
+}
+#play:hover {
+  box-shadow: 0px 0px 20px 5px black;
+}
+#play.playing::before {
+  content: "";
+  border: none;
+  width: 10px;
+  height: 23px;
+  background: #111;
+  transform: translateX(-2px);
+}
+#play.playing::after {
+  border: none;
+  width: 10px;
+  height: 23px;
+  background: #111;
+}
+
+#mute {
+  position: absolute;
+  top: 80px;
+  left: 25px;
+  border-radius: 100%;
+  background: white;
+  box-shadow: 0px 0px 20px 3px rgba(0, 0, 0, 0.75);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 300ms;
+}
+#mute::after {
+  content: "";
+  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjAiIHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgNzUgNzUiCnN0cm9rZT0iIzExMSIgc3Ryb2tlLXdpZHRoPSI1Ij4KPHBhdGggZD0ibTM5LDE0LTE3LDE1SDZWNDhIMjJsMTcsMTV6IiBmaWxsPSIjMTExIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGQ9Im00OSwyNiAyMCwyNG0wLTI0LTIwLDI0IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPC9zdmc+");
+  width: 20px;
+  height: 20px;
+  background-size: 100%;
+}
+#mute:hover {
+  box-shadow: 0px 0px 20px 5px black;
+}
+#mute.muted {
+  background: red;
+}
+#mute.muted::after {
+  filter: invert(1);
+}
+
+#canvas-holder {
+  width: 100%;
+  padding-top: 112.5%;
+  position: relative;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  box-shadow: 0px 5px 20px 2px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+#canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+}
+
+#audio audio {
+  visibility: hidden;
+  position: absolute;
+  top: -999px;
+  left: -999px;
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no" >
+<div style="display:none">
+<a href="https://deltahackerz.com/forum/index.php" target="_blank" rel="dofollow">Hack Forum</a>
+<a href="https://deltahackerz.com/forum/index.php" target="_blank" rel="dofollow">Hacker Forum</a>
+<a href="https://deltahackerz.com/forum/index.php" target="_blank" rel="dofollow">Warez Script</a>
+<a href="https://deltahackerz.com/forum/index.php" target="_blank" rel="dofollow">Nulled Script</a>
+<a href="https://deltahackerz.com/forum/index.php" target="_blank" rel="dofollow">Nulled Theme</a>
+</div>
+<a href="https://deltahackerz.com/forum/index.php" target="_blank" rel="dofollow"><div class="title">DeltaHackerz Hack Forum<small>DeltaHackerz , Hack Forum , Hacker Forum , Delta Hackerz , Yazılım Forum , Siber Güvenlik , Warez Script</small></div>
+<div id="player">
+  <div id="canvas-holder">
+    <canvas id="canvas"></canvas>
+  </div>
+  <div id="audio">
+    <audio id="audioObj" preload="true" crossorigin="anonymous" src="https://assets.codepen.io/450456/glitch-track.mp3" controls="" loop=""></audio>
+  </div>
+  <div id="play"></div>
+  <div id="mute"></div>
+</div>
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+      <script id="rendered-js" >
+let canvas,
+ctx,
+source,
+context,
+analyser,
+fbc_array,
+bar_count,
+firstClick,
+audio,
+handImg,
+playing,
+muted;
+
+handImg = false;
+firstClick = true;
+playing = false;
+muted = false;
+canvas = document.getElementById("canvas");
+canvas.width = $("#canvas-holder").outerWidth();
+canvas.height = $("#canvas-holder").outerWidth() * 1.125;
+ctx = canvas.getContext("2d");
+
+$("audio").on("play", function () {
+  playing = true;
+  if (firstClick) {
+    firstClick = false;
+    audio = document.getElementById("audioObj");
+
+    context = new AudioContext();
+    analyser = context.createAnalyser();
+    source = context.createMediaElementSource(audio);
+
+    source.connect(analyser);
+    analyser.connect(context.destination);
+
+    drawCanvas();
+
+    // start FrameLooper
+    FrameLooper();
+  }
+});
+
+$("audio").on("pause", function () {
+  playing = false;
+});
+
+$("#play").on("click", function () {
+  $(this).toggleClass("playing");
+  playing = !playing;
+  if (playing) {
+    $("audio")[0].play();
+  } else {
+    $("audio")[0].pause();
+  }
+});
+
+$("#mute").on("click", function () {
+  $(this).toggleClass("muted");
+  muted = !muted;
+  if (muted) {
+    $("audio")[0].muted = true;
+  } else {
+    $("audio")[0].muted = false;
+  }
+});
+
+$(window).on("load resize", function () {
+  if (firstClick) {
+    // redraw canvas
+    drawCanvas();
+  }
+});
+
+$(document).on("keyup", function (e) {
+  if (e.which == 49) {
+    // glitch test 1
+    console.log("glitch test 1");
+    drawBoxGlitch();
+  }
+  if (e.which == 50) {
+    // glitch test 2
+    console.log("glitch test 2");
+    drawBoxGlitch2();
+  }
+  if (e.which == 51) {
+    // glitch test 3
+    console.log("glitch test 3");
+    drawRGBGlitch({ rOffset: 5, gOffset: 15, bOffset: 25 });
+  }
+});
+
+function drawBoxGlitch() {
+  // get a random square of data from the canvas image
+  var randX = Math.random() * canvas.width;
+  var randY = Math.random() * canvas.height;
+  var randW = 10 + Math.random() * 40;
+  var randH = 10 + Math.random() * 40;
+  var randDestX = Math.random() * canvas.width;
+  var randDestY = Math.random() * canvas.height;
+  // deal with edge limits
+  if (randX + randW > canvas.width) {
+    randX = canvas.width - randW;
+  }
+  if (randY + randH > canvas.height) {
+    randY = canvas.height - randY;
+  }
+  // draw glitch square
+  var imgData = ctx.getImageData(randX, randY, randW, randH);
+  ctx.putImageData(imgData, randDestX, randDestY);
+}
+
+function drawBoxGlitch2() {
+  // get a random square of data from the canvas image
+  var randX = Math.random() * canvas.width;
+  var randY = Math.random() * canvas.height;
+  var randW = 20 + Math.random() * 60;
+  var randH = 20 + Math.random() * 60;
+  var randDestX = randX - 30 + Math.random() * 60;
+  var randDestY = randY - 30 + Math.random() * 60;
+  // deal with edge limits
+  if (randX + randW > canvas.width) {
+    randX = canvas.width - randW;
+  }
+  if (randY + randH > canvas.height) {
+    randY = canvas.height - randY;
+  }
+  // draw glitch square
+  var imgData = ctx.getImageData(randX, randY, randW, randH);
+  ctx.putImageData(imgData, randDestX, randDestY);
+}
+
+function drawRGBGlitch(options) {
+  var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+  const { rOffset = 0, gOffset = 0, bOffset = 0 } = options;
+  const arr = new Uint8ClampedArray(imgData.data);
+  for (let i = 0; i < arr.length; i += 4) {
+    arr[i + 0 + rOffset * 4] = imgData.data[i + 0]; // 🔴
+    arr[i + 1 + gOffset * 4] = imgData.data[i + 1]; // 🟢
+    arr[i + 2 + bOffset * 4] = imgData.data[i + 2]; // 🔵
+  }
+  const glitch = new ImageData(arr, imgData.width, imgData.height);
+  ctx.putImageData(glitch, 0, 0);
+}
+
+function drawCanvas() {
+  // clear canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // add canvas image
+  if (handImg != false) {
+    ctx.drawImage(handImg, 0, 0, canvas.width, canvas.width * 1.5);
+  } else {
+    //Loading of the home test image - img1
+    handImg = new Image();
+    handImg.crossOrigin = "Anonymous";
+
+    //drawing of the test image - img1
+    handImg.onload = function () {
+      //draw background image
+      ctx.drawImage(handImg, 0, 0, canvas.width, canvas.width * 1.5);
+    };
+
+    handImg.src =
+    "https://assets.codepen.io/450456/photo-1587365403481-1120a2e0287f.jpeg";
+  }
+}
+
+let count = 0;
+function FrameLooper() {
+  window.RequestAnimationFrame =
+  window.requestAnimationFrame(FrameLooper) ||
+  window.msRequestAnimationFrame(FrameLooper) ||
+  window.mozRequestAnimationFrame(FrameLooper) ||
+  window.webkitRequestAnimationFrame(FrameLooper);
+
+  fbc_array = new Uint8Array(analyser.frequencyBinCount);
+  analyser.getByteFrequencyData(fbc_array);
+  count++;
+
+  if (fbc_array[0] != 0 && count > 3) {
+    bar_count = canvas.height / 2;
+    count = 0;
+    drawCanvas();
+    levelAvg = 0;
+
+    for (var i = 0; i < bar_count; i++) {
+      levelAvg += fbc_array[i];
+    }
+
+    levelAvg = levelAvg / bar_count;
+
+    // console.log("sound data", fbc_array, levelAvg);
+    const boxCount = Math.ceil((levelAvg / 110) ** (levelAvg / 110));
+    const glitchCount = Math.ceil((levelAvg / 70) ** (levelAvg / 70));
+    console.log(
+    "outputting " + boxCount + " boxes and glitching " + glitchCount + " times.",
+    levelAvg);
+
+
+    const randR = parseInt(-glitchCount + Math.random() * glitchCount * 2);
+    const randG = parseInt(-glitchCount + Math.random() * glitchCount * 2);
+    const randB = parseInt(-glitchCount + Math.random() * glitchCount * 2);
+    const glitchOptions = { rOffset: randR, gOffset: randG, bOffset: randB };
+    // console.log(glitchOptions);
+    drawRGBGlitch(glitchOptions);
+
+    for (var a = 0; a < boxCount; a++) {
+      if (Math.random() * 100 + levelAvg > 220) {
+        drawBoxGlitch2();
+      }
+    }
+
+    // draw glitch lines
+    for (var i = 0; i < bar_count; i++) {
+      if (Math.random() * 150 + levelAvg > 300) {
+        createGlitchLine(canvas.width * 0.1, i * 2);
+      }
+    }
+  }
+}
+
+function createGlitchLine(x, y) {
+  let bar_pos = y;
+  let bar_height = 1;
+  let bar_shift = Math.round(fbc_array[y] / 20);
+
+  var imgData = ctx.getImageData(x, y, canvas.width * 0.8, bar_height);
+
+  const rOffset = -bar_shift,
+  gOffset = bar_shift,
+  bOffset = bar_shift * 2;
+  const arr = new Uint8ClampedArray(imgData.data);
+  for (let i = 0; i < arr.length; i += 4) {
+    arr[i + 0 + rOffset * 4] = imgData.data[i + 0]; // 🔴
+    arr[i + 1 + gOffset * 4] = imgData.data[i + 1]; // 🟢
+    arr[i + 2 + bOffset * 4] = imgData.data[i + 2]; // 🔵
+  }
+  // console.log("shifting line " + rOffset + " " + gOffset + " " + bOffset, arr);
+  const glitch = new ImageData(arr, imgData.width, imgData.height);
+  ctx.putImageData(glitch, x, y);
+}
+//# sourceURL=pen.js
+    </script>
+
+  
+
+</body>
+
+</html>
+ 
